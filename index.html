@@ -3,14 +3,18 @@
 
 <head>
     <title>This is a title!</title>
-    <script defer src="js/script.js"></script>
+    <script defer src="js/script.js" type="module"></script>
     <link href="styling/stylesheet.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="image-grid">
+    <div id="main-wrapper">
+        <div id="image-grid"></div>
+        <div id="note-overlay">
+            <button id="close-button">X</button>
+        </div>
     </div>
-    <div id="note-overlay"></div>
+
 </body>
 
 </html>

@@ -1,9 +1,26 @@
-let mySpan = document.getElementById("image-grid");
+import {
+    NoteOverlay
+} from "./model/noteOverlay.js";
+
+let overlay = new NoteOverlay(false, "This is a note!");
+
+overlay.visibility ? console.log("ye!") : console.log("ne");
+let overyLay = document.getElementById('note-overlay');
+overyLay.style.visibility = 'hidden';
+
+
+let imageGrid = document.getElementById("image-grid");
 let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 const funky = function (id) {
-    console.log("Do a thang!");
+    overyLay.style.visibility = 'visible';
+    let overlayTextbox = document.createElement('h1');
+    overlayTextbox.setAttribute("id", "overlay-text")
+    overlayTextbox.appendChild(document.createTextNode(id));
+    document.getElementById("note-overlay").appendChild(overlayTextbox);
 }
+
+
 
 for (let j = 0; j < 8; j++) {
     let newSpan = document.createElement('span');
@@ -19,7 +36,7 @@ for (let j = 0; j < 8; j++) {
         imgWrapper.appendChild(imageTile);
         newSpan.appendChild(imgWrapper);
     }
-    mySpan.appendChild(newSpan);
+    imageGrid.appendChild(newSpan);
 }
 
 function createImageElement(id) {
@@ -30,4 +47,15 @@ function createImageElement(id) {
         funky(id);
     }
     return imageTile
+}
+
+let closeButton = document.getElementById("close-button");
+closeButton.onclick = close;
+
+
+function close() {
+    let noteOverlay = document.getElementById("note-overlay");
+    let textbox = document.getElementById("overlay-text");
+    noteOverlay.removeChild(textbox);
+    noteOverlay.style.visibility = 'hidden';
 }
