@@ -2,8 +2,7 @@ let mySpan = document.getElementById("image-grid");
 let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 const funky = function (id) {
-    let clickedOverlay = document.getElementById(`overlay-${id}`);
-    clickedOverlay.style.visibility = 'visible';
+    console.log("Do a thang!");
 }
 
 for (let j = 0; j < 8; j++) {
@@ -15,22 +14,20 @@ for (let j = 0; j < 8; j++) {
         let imgWrapper = document.createElement('span');
         imgWrapper.setAttribute("class", "map-piece");
 
-        let imageTile = document.createElement('img');
-        imageTile.setAttribute("src", `images/${id}.png`);
-        imageTile.setAttribute("class", "blurred");
-        imageTile.setAttribute("id", id)
-        imageTile.onclick = function () {
-            funky(id);
-        }
-
-        let overlay = document.createElement('div');
-        overlay.setAttribute("class", "overlay");
-        overlay.setAttribute("id", `overlay-${id}`)
-        overlay.style.visibility = 'hidden'
+        let imageTile = createImageElement(id);
 
         imgWrapper.appendChild(imageTile);
-        imgWrapper.appendChild(overlay);
         newSpan.appendChild(imgWrapper);
     }
     mySpan.appendChild(newSpan);
+}
+
+function createImageElement(id) {
+    let imageTile = document.createElement('img');
+    imageTile.setAttribute("src", `images/${id}.png`);
+    imageTile.setAttribute("id", id)
+    imageTile.onclick = function () {
+        funky(id);
+    }
+    return imageTile
 }
